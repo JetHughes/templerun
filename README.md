@@ -15,5 +15,9 @@
 - Spherical collision map rather than cubic or other as we may have a problem with lag without the tethered connection. 
 - World-Space coordinate tracking for the collision with the player.
 
+Oculus
+Unity Hub
+Unity Version: 2023.3.4f1
+In Scenes -> SampleScene
 
 
