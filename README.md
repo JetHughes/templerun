@@ -14,10 +14,12 @@
 **POINTS TO NOTE:**
 - Spherical collision map rather than cubic or other as we may have a problem with lag without the tethered connection. 
 - World-Space coordinate tracking for the collision with the player.
+- Possible use of Raycast to move the objects towards you based on player controller movement. A series of three objects have to be "hit" or the raycast moved over in consecutive order to trigger an action (that being move the objects towards you).
+-  
 
-Oculus
-Unity Hub
-Unity Version: 2023.3.4f1
+Oculus<br>
+Unity Hub<br>
+Unity Version: 2023.3.4f1<br>
 In Scenes -> SampleScene
 
 
