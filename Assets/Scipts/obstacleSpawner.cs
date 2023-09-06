@@ -10,7 +10,7 @@ public class obstacleSpawner : MonoBehaviour
     void Start()
     {
         // SpawnObstacle();
-        InvokeRepeating ("SpawnObstacle", 0.5f, 0.3f);
+        InvokeRepeating ("SpawnObstacle", 0.5f, 0.2f);
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class obstacleSpawner : MonoBehaviour
 
     void SpawnObstacle()
     {
-        float x = Random.Range(-3, 3);
+        float x = (float)(Random.Range(0, 5)*2)-4f;
 
         Vector3 location = new Vector3(x, 0.5f, 20.0f);
 
