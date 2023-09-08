@@ -10,7 +10,7 @@ public class obstacleSpawner : MonoBehaviour
     void Start()
     {
         // SpawnObstacle();
-        InvokeRepeating ("SpawnObstacle", 0.5f, 0.2f);
+        InvokeRepeating ("SpawnObstacle", 0.5f, 1f);
     }
 
     // Update is called once per frame
