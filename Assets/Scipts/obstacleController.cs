@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class obstacleController : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public Rigidbody myRigidbody;
+    public float moveSpeed;
+    public Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 2.0f);
+        // rb.AddForce(direction*moveSpeed, ForceMode.VelocityChange);
+        Destroy(gameObject, 10.0f);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 direction = new Vector3(0.0f, 0.0f, -1.0f);
         Vector3 velocity = direction.normalized * moveSpeed;
-        myRigidbody.MovePosition (myRigidbody.position + velocity * Time.fixedDeltaTime);
+        rb.MovePosition (rb.position + velocity * Time.fixedDeltaTime);
     }
+
 }
