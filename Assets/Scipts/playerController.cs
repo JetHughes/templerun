@@ -33,11 +33,11 @@ public class playerController : MonoBehaviour
         health -= 0.25f; // Adjust this value based on your game's health system
         lives -= 1;
         print("Damage taken");
-        Destroy(other.transform.parent.gameObject);
+        // Destroy(other.transform.parent.gameObject);
 
         // Check for death
         if (health <= 0) {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
 
         UpdateHealthBar(); // Call the function to update the Health Bar
