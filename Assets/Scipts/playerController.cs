@@ -8,16 +8,18 @@ public class playerController : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody myRigidbody;
+    public GameObject GameOver;
     private int lives = 4;
     private float health = 1.0f; // Start with full health (1.0)
 
-    public Slider healthSlider; // Reference to your Health Bar Slider
+    Slider healthSlider; // Reference to your Health Bar Slider
 
     // Start is called before the first frame update
     void Start()
     {
         healthSlider = GameObject.Find("Canvas/Health_Bar").GetComponent<Slider>();
         UpdateHealthBar();
+        GameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,16 +31,21 @@ public class playerController : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        // Reduce health when taking damage
-        health -= 0.25f; // Adjust this value based on your game's health system
-        lives -= 1;
-        print("Damage taken");
-        Destroy(other.transform.parent.gameObject);
+        // if (other.tag == "obstacle"){
+            // Reduce health when taking damage
+            health -= 0.25f; // Adjust this value based on your game's health system
+            lives -= 1;
+            print("Damage taken");
+            Destroy(other.transform.parent.gameObject);
 
-        // Check for death
-        if (health <= 0) {
-            Destroy(gameObject);
-        }
+            // Check for death
+            if (health <= 0) {
+                Destroy(gameObject);
+                GameOver.SetActive(true);
+            }
+        // } else if (other.tag == "coin"){
+
+        // }
 
         UpdateHealthBar(); // Call the function to update the Health Bar
     }
