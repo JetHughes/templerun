@@ -17,6 +17,7 @@ public class CameraXTracking : MonoBehaviour
         Vector3 newPosition = playerTransform.position;
         newPosition.x = cameraTransform.position.x;
         newPosition.z = cameraTransform.position.z;
+        newPosition.y = cameraTransform.position.y;
         playerTransform.position = newPosition;
     }
 }
