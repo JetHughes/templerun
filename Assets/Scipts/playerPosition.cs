@@ -16,13 +16,7 @@ public class CameraXTracking : MonoBehaviour
         // Update the object's X position based on the camera's X position
         Vector3 newPosition = playerTransform.position;
         newPosition.x = cameraTransform.position.x;
-        // newPosition.z = cameraTransform.position.z;
+        newPosition.z = cameraTransform.position.z;
         playerTransform.position = newPosition;
-
-        Vector3 newCameraPosition = cameraTransform.position;
-        newCameraPosition.y = playerTransform.position.y;
-        newCameraPosition.z = playerTransform.position.z;
-        cameraTransform.position = newCameraPosition;
     }
 }
-
