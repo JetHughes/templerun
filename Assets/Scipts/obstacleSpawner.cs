@@ -7,8 +7,10 @@ using UnityEngine.PlayerLoop;
 public class obstacleSpawner : MonoBehaviour
 {
     public GameObject obstaclePrefab;
+    public GameObject horizontalObstaclePrefab;
     public GameObject world;
     public float frequency;
+    public float horizontalObstacleFrequency;
     public float initialDelay;
     private float delay;
     float startTime;
@@ -20,20 +22,17 @@ public class obstacleSpawner : MonoBehaviour
         // SpawnObstacle();
         world = GameObject.FindWithTag("world");
         InvokeRepeating ("SpawnObstacle", frequency, delay);
+        InvokeRepeating ("SpawnHorizontalObstacle", frequency, horizontalObstacleFrequency);
         startTime = Time.time;
         delay = initialDelay;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        print(Math.Abs(Time.time - startTime));
-        if (Math.Abs(Time.time - startTime) > 3 + frequency){
+        if (Math.Abs(Time.time - startTime) > 5 + frequency && delay > 0.5){
             startTime = Time.time;
             delay -= 0.2f;
-            if (delay <= 0){
-                delay = 0.3f;
-            }
             print("delay: " + delay);
             CancelInvoke("SpawnObstacle");
             InvokeRepeating ("SpawnObstacle", 0, delay);
@@ -47,6 +46,13 @@ public class obstacleSpawner : MonoBehaviour
         Vector3 location = new Vector3(x, 2.0f, 20.0f);
 
         GameObject obstacle = Instantiate(obstaclePrefab, location, Quaternion.identity);
+        obstacle.transform.SetParent(world.transform, true);
+    }
+
+    void SpawnHorizontalObstacle(){
+        Vector3 location = new Vector3(0.0f, 1.5f, 20.0f);
+
+        GameObject obstacle = Instantiate(horizontalObstaclePrefab, location, Quaternion.identity);
         obstacle.transform.SetParent(world.transform, true);
     }
 }

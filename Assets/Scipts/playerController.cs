@@ -20,6 +20,8 @@ public class playerController : MonoBehaviour
     TMP_Text Wrist_timerText;
     Slider healthSlider; // Reference to your Health Bar Slider
     TMP_Text timerText;
+    public TMP_Text coinsLabel;
+    private int coins = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,9 @@ public class playerController : MonoBehaviour
         Wrist_timerText = GameObject.Find("Wrist_Canvas/Timer_Count").GetComponent<TMP_Text>();
         healthSlider = GameObject.Find("Canvas/Health_Bar").GetComponent<Slider>();
         timerText = GameObject.Find("Canvas/Timer_Count").GetComponent<TMP_Text>();
+        coinsLabel = GameObject.Find("Canvas/Coins_Label").GetComponent<TMP_Text>();
         UpdateHealthBar();
+        UpdateCoins();
         GameOver.SetActive(false);
         startTime = Time.time;
     }
@@ -45,7 +49,7 @@ public class playerController : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        // if (other.tag == "obstacle"){
+        if (other.tag == "obstacle"){
             // Reduce health when taking damage
             health -= 0.25f; // Adjust this value based on your game's health system
             lives -= 1;
@@ -57,11 +61,17 @@ public class playerController : MonoBehaviour
                 Destroy(gameObject);
                 GameOver.SetActive(true);
             }
-        // } else if (other.tag == "coin"){
-
-        // }
-
+        } else if (other.tag == "coin"){
+            coins += 1;
+        }
+        UpdateCoins();
         UpdateHealthBar(); // Call the function to update the Health Bar
+    }
+
+    void UpdateCoins(){
+        if (coinsLabel != null){
+            coinsLabel.SetText(coins.ToString());
+        }
     }
 
 
