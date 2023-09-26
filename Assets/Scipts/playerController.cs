@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent (typeof (Rigidbody))]
 public class playerController : MonoBehaviour
@@ -11,15 +12,25 @@ public class playerController : MonoBehaviour
     public GameObject GameOver;
     private int lives = 4;
     private float health = 1.0f; // Start with full health (1.0)
+    float startTime; 
+    float currentTime;
 
+
+    Slider Wrist_healthSlider; // Reference to your Health Bar Slider
+    TMP_Text Wrist_timerText;
     Slider healthSlider; // Reference to your Health Bar Slider
+    TMP_Text timerText;
 
     // Start is called before the first frame update
     void Start()
     {
+        Wrist_healthSlider = GameObject.Find("Wrist_Canvas/Health_Bar").GetComponent<Slider>();
+        Wrist_timerText = GameObject.Find("Wrist_Canvas/Timer_Count").GetComponent<TMP_Text>();
         healthSlider = GameObject.Find("Canvas/Health_Bar").GetComponent<Slider>();
+        timerText = GameObject.Find("Canvas/Timer_Count").GetComponent<TMP_Text>();
         UpdateHealthBar();
         GameOver.SetActive(false);
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -28,6 +39,9 @@ public class playerController : MonoBehaviour
         Vector3 input = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical"));
         Vector3 velocity = input.normalized * moveSpeed;
         myRigidbody.MovePosition (myRigidbody.position + velocity * Time.fixedDeltaTime);
+        currentTime = Time.time - startTime;
+        Wrist_timerText.SetText("Time: " + currentTime);
+        timerText.SetText("Time: " + currentTime);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -53,7 +67,8 @@ public class playerController : MonoBehaviour
 
     void UpdateHealthBar() {
         // Update the Health Bar Slider with the current health value
-        if (healthSlider != null) {
+        if (Wrist_healthSlider != null) {
+            Wrist_healthSlider.value = health;
             healthSlider.value = health;
         }
     }
