@@ -27,7 +27,7 @@ public class coinSpawner : MonoBehaviour
     {
         float x = (float)((Random.Range(0, 5)*2)-4f)*0.2f;
 
-        Vector3 location = new Vector3(x, 1.0f, 20.0f);
+        Vector3 location = new Vector3(x, 1.5f, 20.0f);
 
         GameObject obstacle = Instantiate(coinPrefab, location, Quaternion.identity);
         obstacle.transform.SetParent(world.transform, true);

@@ -17,7 +17,8 @@ public class CameraXTracking : MonoBehaviour
         Vector3 newPosition = playerTransform.position;
         newPosition.x = cameraTransform.position.x;
         newPosition.z = cameraTransform.position.z;
-        newPosition.y = cameraTransform.position.y;
+        newPosition.y = cameraTransform.position.y - GetComponent<MeshRenderer>().bounds.extents.y;
+        print(GetComponent<MeshRenderer>().bounds.extents.y);
         playerTransform.position = newPosition;
     }
 }
