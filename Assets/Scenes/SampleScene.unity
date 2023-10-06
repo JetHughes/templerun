@@ -4230,7 +4230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7054588257196598820, guid: 00f91c916cbd03c4b8820ea2639c581a, type: 3}
       propertyPath: initialDelay
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7054588257196598820, guid: 00f91c916cbd03c4b8820ea2639c581a, type: 3}
       propertyPath: obstableHorzPrefab
