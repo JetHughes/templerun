@@ -70,7 +70,7 @@ public class playerController : MonoBehaviour
 
     void UpdateCoins(){
         if (coinsLabel != null){
-            coinsLabel.SetText(coins.ToString());
+            coinsLabel.SetText("Coins: " + coins);
         }
     }
 
