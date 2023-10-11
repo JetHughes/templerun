@@ -10,6 +10,8 @@ public class playerController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody myRigidbody;
     public GameObject GameOver;
+    public GameObject ObstacleSpawner;
+    public GameObject CoinSpawner;
     private int lives = 4;
     private float health = 1.0f; // Start with full health (1.0)
     float startTime; 
@@ -23,6 +25,12 @@ public class playerController : MonoBehaviour
     public TMP_Text coinsLabel;
     private int coins = 0;
 
+    public AudioSource audioData;
+    public AudioSource audioData2;
+
+    public SpriteRenderer damageScreen;
+    float fadeSpeed = 0.01f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +43,10 @@ public class playerController : MonoBehaviour
         UpdateCoins();
         GameOver.SetActive(false);
         startTime = Time.time;
+        Color tmp = damageScreen.color;
+        tmp.a = 0;
+        damageScreen.color = tmp;
+        
     }
 
     // Update is called once per frame
@@ -46,10 +58,19 @@ public class playerController : MonoBehaviour
         currentTime = Time.time - startTime;
         Wrist_timerText.SetText("Time: " + currentTime);
         timerText.SetText("Time: " + currentTime);
+        if(damageScreen.color.a > 0){
+            Color tmp = damageScreen.color;
+            tmp.a = tmp.a - fadeSpeed;
+            damageScreen.color = tmp;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "obstacle"){
+            audioData2.Play(0);
+            Color tmp = damageScreen.color;
+            tmp.a = 1;
+            damageScreen.color = tmp;
             // Reduce health when taking damage
             health -= 0.25f; // Adjust this value based on your game's health system
             lives -= 1;
@@ -59,10 +80,15 @@ public class playerController : MonoBehaviour
             // Check for death
             if (health <= 0) {
                 Destroy(gameObject);
+                GameOver.GetComponent<TMP_Text>().SetText("Game Over\ntime: " + (Time.time - startTime) + "\ncoins: " + coins);
                 GameOver.SetActive(true);
+                Destroy(ObstacleSpawner);
+                Destroy(CoinSpawner);
             }
         } else if (other.tag == "coin"){
             coins += 1;
+            audioData.Play(0);
+
         }
         UpdateCoins();
         UpdateHealthBar(); // Call the function to update the Health Bar

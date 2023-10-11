@@ -30,7 +30,7 @@ public class obstacleSpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Math.Abs(Time.time - startTime) > 5 + frequency && delay > 0.5){
+        if (Math.Abs(Time.time - startTime) > 1 + frequency && delay > 0.5){
             startTime = Time.time;
             delay -= 0.2f;
             print("delay: " + delay);

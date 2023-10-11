@@ -11,7 +11,7 @@ public class obstacleController : MonoBehaviour
     void Start()
     {
         // rb.AddForce(direction*moveSpeed, ForceMode.VelocityChange);
-        Destroy(gameObject, 7.0f);
+        Destroy(gameObject, 6.0f);
     }
 
     // Update is called once per frame
