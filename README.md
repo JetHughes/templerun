@@ -6,4 +6,4 @@ This is VR Temple Run! It is a virtual realityified version of temple run. You s
 
 Oculus<br>
 Unity Hub<br>
-Unity Version: 2023.3.4f1<br>
+Unity Version: 2022.3.4f1<br>
